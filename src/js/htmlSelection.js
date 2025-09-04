@@ -16,7 +16,6 @@ const elRuleImg = document.getElementById("ruleImg"),
   elStatusContainer = document.getElementById("statusContainer"),
   elStatusText = document.getElementById("statusText"),
   elResetGameButton = document.getElementById("resetGameButton"),
-  origin = location?.origin,
   html = document.documentElement;
 
 export {
@@ -37,6 +36,5 @@ export {
   elStatusContainer,
   elStatusText,
   elResetGameButton,
-  origin,
   html,
 };

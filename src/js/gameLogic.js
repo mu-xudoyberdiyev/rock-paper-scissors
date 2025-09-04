@@ -7,7 +7,6 @@ import {
   elPickedHandUserImg,
   elPickedHandRobotImg,
   elModeChangerButton,
-  origin,
   html,
   elStatusText,
   elStatusContainer,
@@ -22,11 +21,11 @@ const gameLogic = (hand) => {
   elChoosingZone.classList.add("hidden");
   elGamingZone.classList.remove("hidden");
   elGamingZone.classList.add("flex");
-  elPickedHandUserImg.src = origin + `/src/images/${hand.dataset.user}.svg`;
-  elPickedHandRobotImg.src = origin + "/src/images/choosing.svg";
+  elPickedHandUserImg.src = `/src/images/${hand.dataset.user}.svg`;
+  elPickedHandRobotImg.src = "/src/images/choosing.svg";
 
   setTimeout(() => {
-    elPickedHandRobotImg.src = origin + `/src/images/${robotChosen}.svg`;
+    elPickedHandRobotImg.src = `/src/images/${robotChosen}.svg`;
   }, 1000);
 
   setTimeout(() => {
