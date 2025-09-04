@@ -26,8 +26,8 @@ const { triangle, polygon } = {
 // Mode changer
 const modeChanger = () => {
   if (html.dataset.mode === basic) {
-    elLogo.src = origin + logoAdvanced;
-    elRuleImg.src = origin + ruleAdvanced;
+    elLogo.src = logoAdvanced;
+    elRuleImg.src = ruleAdvanced;
     elModeChangerButton.textContent = basic;
     elGameMode.classList.remove(triangle);
     elGameMode.classList.add(polygon);
@@ -70,8 +70,8 @@ const modeChanger = () => {
 
     html.dataset.mode = advanced;
   } else {
-    elLogo.src = origin + logoBasic;
-    elRuleImg.src = origin + ruleBasic;
+    elLogo.src = logoBasic;
+    elRuleImg.src = ruleBasic;
     elModeChangerButton.textContent = advanced;
     elGameMode.classList.remove(polygon);
     elGameMode.classList.add(triangle);

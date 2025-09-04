@@ -21,11 +21,11 @@ const gameLogic = (hand) => {
   elChoosingZone.classList.add("hidden");
   elGamingZone.classList.remove("hidden");
   elGamingZone.classList.add("flex");
-  elPickedHandUserImg.src = `/src/images/${hand.dataset.user}.svg`;
-  elPickedHandRobotImg.src = "/src/images/choosing.svg";
+  elPickedHandUserImg.src = `./images/${hand.dataset.user}.svg`;
+  elPickedHandRobotImg.src = "./images/choosing.svg";
 
   setTimeout(() => {
-    elPickedHandRobotImg.src = `/src/images/${robotChosen}.svg`;
+    elPickedHandRobotImg.src = `./images/${robotChosen}.svg`;
   }, 1000);
 
   setTimeout(() => {
