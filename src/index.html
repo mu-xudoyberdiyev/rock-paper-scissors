@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html class="font-barlow h-full" data-mode="" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rock, Paper, Scissors, Lizard, Spock</title>
+
+    <!-- Google Fonst  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Styles  -->
+    <style>
+      *:focus {
+        outline: 2px dashed white;
+      }
+
+      .loader {
+        position: relative;
+        width: 100px;
+        height: 100px;
+      }
+
+      .loader:before,
+      .loader:after {
+        content: "";
+        border-radius: 50%;
+        position: absolute;
+        inset: 0;
+        box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1) inset;
+      }
+
+      .loader:after {
+        box-shadow: 0 2px 0 #eb9f0e inset;
+        animation: rotate 2s linear infinite;
+      }
+
+      @keyframes rotate {
+        0% {
+          transform: rotate(0);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.min.css" />
+  </head>
+  <body
+    class="h-full bg-[radial-gradient(134.34%_134.34%_at_50%_0%,#1F3757_0%,#131537_100%)] text-white"
+  >
+    <!-- Loader -->
+    <div
+      class="flex items-center justify-center fixed left-0 top-0 w-full h-full z-[999] bg-[#1F3757] transition-opacity duration-500"
+      id="loader"
+    >
+      <span class="loader"></span>
+    </div>
+
+    <!-- Header  -->
+    <header class="pt-[45px] pb-[59px]">
+      <div class="w-full max-w-[740px] mx-auto px-5">
+        <div
+          class="flex items-center justify-between py-5 px-6 rounded-[15px] border-[3px] border-[rgba(255,255,255,0.29)] max-[500px]:p-6"
+        >
+          <a href="index.html">
+            <img
+              class="shrink-0 drop-shadow-[0px_3px_3px_rgba(0,0,0,0.20)] max-[500px]:w-[48px] max-[500px]:h-48px"
+              id="logo"
+              src="/src/images/tipa-logo-basic.svg"
+              alt="Tipa logo"
+              data-logo-basic="/src/images/tipa-logo-basic.svg"
+              data-logo-advanced="/src/images/tipa-logo-advanced.svg"
+            />
+          </a>
+          <span
+            class="flex flex-col items-center bg-[linear-gradient(0deg,#F3F3F3_0%,#FFF_100%)] shadow-[0px_3px_3px_0px_rgba(0,0,0,0.20)] rounded-lg p-4 min-w-[148px] max-[500px]:min-w-[80px]"
+          >
+            <span
+              class="text-[16px] font-semibold text-[#2a45c2] uppercase tracking-[2.5px] leading-none max-[500px]:text-[10px] max-[500px]:tracking-[1.56px]"
+              >Score</span
+            >
+            <strong
+              class="text-[#565468] text-[64px] leading-none max-[500px]:text-[40px]"
+              id="score"
+              >0</strong
+            >
+          </span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Choose hand zone -->
+    <div class="block max-w-[480px] w-full mx-auto" id="choosingZone">
+      <div
+        class="transition-all grid grid-cols-2 gap-x-20 gap-y-6 bg-[url(./images/triangle.svg)] bg-no-repeat bg-[center_calc(60%)]"
+        id="gameMode"
+      >
+        <button
+          class="js-hand transition-shadow hover:shadow-[0px_0px_0px_27px_rgba(255,255,255,0.05)] rounded-full place-self-center"
+          data-user="paper"
+        >
+          <img
+            class="js-hand-image transition-all w-[198px] h-[203px] rounded-full shadow-[0px_3px_3px_0px_rgba(0,0,0,0.20)]"
+            src="images/paper.svg"
+            alt="Paper"
+          />
+        </button>
+        <button
+          class="js-hand hidden transition-shadow hover:shadow-[0px_0px_0px_27px_rgba(255,255,255,0.05)] rounded-full -translate-x-[43px] -translate-y-[20px] place-self-center"
+          data-user="spock"
+        >
+          <img
+            class="js-hand-image transition-all w-[145px] h-[148px] rounded-full shadow-[0px_3px_3px_0px_rgba(0,0,0,0.20)]"
+            src="images/spock.svg"
+            alt="Spock"
+          />
+        </button>
+
+        <button
+          class="js-hand transition-shadow hover:shadow-[0px_0px_0px_27px_rgba(255,255,255,0.05)] rounded-full place-self-center"
+          data-user="scissors"
+        >
+          <img
+            class="js-hand-image transition-all w-[198px] h-[203px] rounded-full shadow-[0px_3px_3px_0px_rgba(0,0,0,0.20)]"
+            src="images/scissors.svg"
+            alt="Scissors"
+          />
+        </button>
+
+        <button
+          class="js-hand hidden transition-shadow hover:shadow-[0px_0px_0px_27px_rgba(255,255,255,0.05)] rounded-full translate-x-[21px] translate-y-[16px] place-self-center"
+          data-user="lizard"
+        >
+          <img
+            class="js-hand-image transition-all w-[145px] h-[148px] rounded-full shadow-[0px_3px_3px_0px_rgba(0,0,0,0.20)]"
+            src="images/lizard.svg"
+            alt="Lizard"
+          />
+        </button>
+        <button
+          class="js-hand transition-shadow hover:shadow-[0px_0px_0px_27px_rgba(255,255,255,0.05)] rounded-full col-start-1 col-end-3 place-self-center"
+          data-user="rock"
+        >
+          <img
+            class="js-hand-image transition-all w-[198px] h-[203px] rounded-full shadow-[0px_3px_3px_0px_rgba(0,0,0,0.20)]"
+            src="images/rock.svg"
+            alt="Rock"
+          />
+        </button>
+      </div>
+    </div>
+
+    <!-- Gaming zone  -->
+    <div
+      class="hidden w-full max-w-[940px] mx-auto px-5 justify-between items-start"
+      id="gamingZone"
+    >
+      <!-- User  -->
+      <div class="flex flex-col items-center">
+        <h3
+          class="text-white text-[24px] leading-[32px] mb-16 uppercase drop-shadow-[0px_3px_3px_rgba(0,0,0,0.20)]"
+        >
+          You picked
+        </h3>
+        <img
+          class="w-[293px] h-[300px] rounded-full transition-shadow shadow-[0px_3px_3px_0px_rgba(0,0,0,0.20)]"
+          id="pickedHandUserImg"
+          src=""
+          alt="You have picked hand"
+        />
+      </div>
+
+      <!-- Status  -->
+      <div
+        class="scale-0 transition-transform mt-auto pb-[100px]"
+        id="statusContainer"
+      >
+        <div class="flex flex-col items-center">
+          <h3
+            class="font-bold text-[56px] mb-4 leading-none uppercase drop-shadow-[0px_3px_3px_rgba(0,0,0,0.20)]"
+          >
+            You <span id="statusText"></span>
+          </h3>
+          <button
+            class="text-center p-[15px] min-w-[220px] uppercase rounded-lg text-[#3b4262] shadow-[0px_3px_3px_0px_rgba(0,0,0,0.20)] bg-white transition-colors hover:text-[#db2e4d]"
+            id="resetGameButton"
+          >
+            Play again
+          </button>
+        </div>
+      </div>
+
+      <!-- Robot  -->
+      <div class="flex flex-col items-center">
+        <h3
+          class="text-[24px] leading-[32px] mb-16 uppercase drop-shadow-[0px_3px_3px_rgba(0,0,0,0.20)]"
+        >
+          The house picked
+        </h3>
+        <img
+          class="w-[293px] h-[300px] rounded-full transition-shadow shadow-[0px_3px_3px_0px_rgba(0,0,0,0.20)]"
+          id="pickedHandRobotImg"
+          src=""
+          alt="Robot has picked hand"
+        />
+      </div>
+    </div>
+
+    <!-- Mode changer and rule modal button  -->
+    <div class="absolute right-8 bottom-8 flex flex-col items-center">
+      <button
+        class="text-[16px] text-center tracking-[2.5px] border-[1px] p-[11px] min-w-[128px] rounded-lg uppercase mb-2 transition-colors hover:bg-white hover:text-[#3b4262]"
+        id="ruleButton"
+      >
+        Rules
+      </button>
+      <button
+        class="text-[16px] text-center tracking-[2.5px] border-[1px] p-[11px] min-w-[128px] rounded-lg uppercase hover:bg-white hover:text-[#3b4262] transition-all"
+        id="modeChangerButton"
+      >
+        Advanced
+      </button>
+    </div>
+
+    <!-- Modal rule -->
+    <dialog
+      id="rule"
+      class="modal bg-[radial-gradient(134_34%_134_34%_at_50%_0%_#1F3757_0%_#131537_100%)"
+    >
+      <div class="modal-box p-8 pb-12 rounded-lg">
+        <div class="flex items-baseline justify-between mb-12">
+          <h3 class="font-bold uppercase text-[#3b4262] text-[32px]">Rules</h3>
+          <form method="dialog">
+            <button class="btn btn-circle btn-ghost">
+              <img src="images/x.svg" alt="Close rule modal" />
+            </button>
+          </form>
+        </div>
+        <img
+          class="mx-auto"
+          id="ruleImg"
+          src="images/rule-basic.svg"
+          alt="Rule of game"
+          data-basic-rule-img="/src/images/rule-basic.svg"
+          data-advanced-rule-img="/src/images/rule-advanced.svg"
+        />
+      </div>
+    </dialog>
+
+    <script src="js/app.js" type="module"></script>
+  </body>
+</html>
